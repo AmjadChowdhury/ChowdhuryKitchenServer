@@ -262,8 +262,12 @@ app.post("/api/chat", async (req, res) => {
     // Prompt tuned for short, relevant answers
     const result = await model.generateContent(`
       You are a helpful assistant for "ChowdhuryKitchen".
-      - If the question is about food or ChowdhuryKitchen: answer in 2-3 lines, focusing on taste, quality, or menu.
-      - If the question is general: answer briefly (2-3 lines).
+      - If the question is about food or ChowdhuryKitchen: answer max in 2-3 lines, focusing on taste, quality, or menu.
+      - If the question is about salad: answer 🥗 Fresh & healthy salads made from premium ingredients and also relavent answer.
+      - If the question is about pizza: answer 🥗 🍕 Delicious, cheesy pizzas baked to perfection and also relavent answer.
+      - If the question is about soup: answer 🥣 Warm, flavorful soups crafted with care and also relavent answer.
+      - If the question is about dessert: answer 🍰 Irresistible desserts to sweeten your day and also relavent answer.
+      - If the question is general: answer briefly maximum (2-3 lines).
       Question: ${message}
     `);
 

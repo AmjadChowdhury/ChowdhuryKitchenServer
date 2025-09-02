@@ -97,6 +97,7 @@ async function run() {
         app.patch("/menu/:id", verifyToken, verifyAdmin, async (req, res) => {
             const id = req.params.id;
             const item = req.body;
+            console.log(req.body)
             const filter = { _id: new ObjectId(id) };
             const updatedDoc = {
                 $set: {
@@ -104,8 +105,9 @@ async function run() {
                     recipe: item.recipe,
                     image: item.image,
                     price: item.price,
-                    category: item.category,
-                },
+                    quantity: item.quantity,
+                    category: item.category
+                }
             };
             const result = await menuCollection.updateOne(filter, updatedDoc);
             res.send(result);
@@ -267,6 +269,7 @@ app.post("/api/chat", async (req, res) => {
       - If the question is about pizza: answer 🥗 🍕 Delicious, cheesy pizzas baked to perfection and also relavent answer.
       - If the question is about soup: answer 🥣 Warm, flavorful soups crafted with care and also relavent answer.
       - If the question is about dessert: answer 🍰 Irresistible desserts to sweeten your day and also relavent answer.
+      - If the question is about dessert and price: answer 🍰 about desserts and amount of price in 200-300 tk to sweeten your day and also relavent answer.
       - If the question is general: answer briefly maximum (2-3 lines).
       Question: ${message}
     `);
